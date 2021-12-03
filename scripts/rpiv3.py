@@ -39,6 +39,8 @@ maxIndex = 2
 global counterIndex 
 global fx
 global fy
+fx = 0
+fy = 0
 counterIndex= 0
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
