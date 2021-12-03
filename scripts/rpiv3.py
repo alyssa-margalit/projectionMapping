@@ -288,20 +288,16 @@ def on_message(client, userdata, msg):
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
     try:
         global flag
-        flag = 1
+        flag = 8
         print(flag)
-        '''if (msg.topic =="TLRequest"):
-            client.publish('TopLx',fx)
-            client.publish('TopLy',fy)
+        if (msg.topic =="TLRequest"):
+            flag = 0
         elif(msg.topic =="TRRequest"):
-            client.publish('TopRx',fx)
-            client.publish('TopRy',fy)
+            flag = 1
         elif(msg.topic =="BLRequest"):
-            client.publish('BotLx',fx)
-            client.publish('BotLy',fy)
+            flag = 2
         elif(msg.topic =="BRRequest"):
-            client.publish('BotRx',fx)
-            client.publish('BotRy',fy)'''
+            flag = 3
     except:
         print("error occured")
     
@@ -564,8 +560,19 @@ if __name__ == '__main__':
         #fy = gyroYangle
         client.publish('fireworkx',gyroXangle)
         client.publish('fireworky',gyroYangle)
-        
-
+        global flag
+        if (flag ==0):
+            client.publish('TopLx',gyroXangle)
+            client.publish('TopLy',gyroYangle)
+        elif(flag ==1):
+            client.publish('TopRx',gyroXangle)
+            client.publish('TopRy',gyroYangle)
+        elif(flag ==2):
+            client.publish('BotLx',gyroXangle)
+            client.publish('BotLy',gyroYangle)
+        elif(flag ==3):
+            client.publish('BotRx',gyroXangle)
+            client.publish('BotRy',gyroYangle)
         #client.publish("xAngle", gyroXangle)
         #client.publish("yAngle", gyroYangle)
         #client.publish("zAngle", gyroZangle)
