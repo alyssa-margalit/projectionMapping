@@ -37,7 +37,7 @@ import RPi.GPIO as GPIO
 global maxIndex
 maxIndex = 2
 global counterIndex 
-
+flag = 0
 fx = 0
 fy = 0
 counterIndex= 0
@@ -287,9 +287,10 @@ def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
     try:
-        global fx
-        global fy
-        if (msg.topic =="TLRequest"):
+        global flag
+        flag = 1
+        print(flag)
+        '''if (msg.topic =="TLRequest"):
             client.publish('TopLx',fx)
             client.publish('TopLy',fy)
         elif(msg.topic =="TRRequest"):
@@ -300,7 +301,7 @@ def on_message(client, userdata, msg):
             client.publish('BotLy',fy)
         elif(msg.topic =="BRRequest"):
             client.publish('BotRx',fx)
-            client.publish('BotRy',fy)
+            client.publish('BotRy',fy)'''
     except:
         print("error occured")
     
@@ -310,8 +311,7 @@ def TL_callback():
 
 
 if __name__ == '__main__':
-    global fx
-    global fy
+
 
     #create a client object
     client = mqtt.Client()
@@ -560,8 +560,8 @@ if __name__ == '__main__':
 
         #print(outputString)
         
-        fx = gyroXangle
-        fy = gyroYangle
+        #fx = gyroXangle
+        #fy = gyroYangle
         client.publish('fireworkx',gyroXangle)
         client.publish('fireworky',gyroYangle)
         
