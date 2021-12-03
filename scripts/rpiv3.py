@@ -308,8 +308,7 @@ def on_message(client, userdata, msg):
 def TL_callback():
     print("tl")
 
-global fx
-global fy
+
 if __name__ == '__main__':
     global fx
     global fy
