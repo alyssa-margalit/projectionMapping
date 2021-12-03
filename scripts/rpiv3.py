@@ -112,12 +112,12 @@ MAG_MEDIANTABLESIZE = 9         # Median filter table size for magnetometer. Hig
 # Calibrating the compass isnt mandatory, however a calibrated
 # compass will result in a more accurate heading value.
 
-magXmin =  -2043
-magYmin =  -3063
-magZmin =  551
-magXmax =  1111
-magYmax =  477
-magZmax =  3904
+magXmin =  -2014
+magYmin =  -2651
+magZmin =  380
+magXmax =  5490
+magYmax =  6589
+magZmax =  8823
 
 
 '''
@@ -280,7 +280,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
-    
+
 
 if __name__ == '__main__':
     #create a client object
