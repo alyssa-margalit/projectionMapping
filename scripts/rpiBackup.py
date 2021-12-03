@@ -39,8 +39,6 @@ maxIndex = 2
 global counterIndex 
 global fx
 global fy
-fx = 0
-fy = 0
 counterIndex= 0
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -53,8 +51,8 @@ GPIO.setup(15,GPIO.IN, pull_up_down = GPIO.PUD_UP)
 def button_callback(channel):
     print("Button was pushed!")
     global counterIndex
-    #global fx
-    #global fy
+    global fx
+    global fy
     client.publish("Scene",counterIndex)
     client.publish("click",1)
 def rotaryA_callback(channel):
@@ -287,34 +285,11 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
-    try:
-        global fx
-        global fy
-        if (msg.topic =="TLRequest"):
-            client.publish('TopLx',fx)
-            client.publish('TopLy',fy)
-        elif(msg.topic =="TRRequest"):
-            client.publish('TopRx',fx)
-            client.publish('TopRy',fy)
-        elif(msg.topic =="BLRequest"):
-            client.publish('BotLx',fx)
-            client.publish('BotLy',fy)
-        elif(msg.topic =="BRRequest"):
-            client.publish('BotRx',fx)
-            client.publish('BotRy',fy)
-    except:
-        print("error occured")
-    
-
 def TL_callback():
     print("tl")
 
 
 if __name__ == '__main__':
-    global fx
-    global fy
-    fx = 0
-    fy = 0
     #create a client object
     client = mqtt.Client()
 
@@ -561,7 +536,8 @@ if __name__ == '__main__':
             outputString +="# kalmanX %5.2f   kalmanY %5.2f #" % (kalmanX,kalmanY)
 
         #print(outputString)
-        
+        global fx
+        global fy
         fx = gyroXangle
         fy = gyroYangle
         client.publish('fireworkx',gyroXangle)
