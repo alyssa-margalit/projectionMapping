@@ -287,26 +287,29 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
-    if (msg.topic =="TLRequest"):
-        global fx
-        global fy
-        client.publish('TopLx',fx)
-        client.publish('TopLy',fy)
-    elif(msg.topic =="TRRequest"):
-        global fx
-        global fy
-        client.publish('TopRx',fx)
-        client.publish('TopRy',fy)
-    elif(msg.topic =="BLRequest"):
-        global fx
-        global fy
-        client.publish('BotLx',fx)
-        client.publish('BotLy',fy)
-    elif(msg.topic =="BRRequest"):
-        global fx
-        global fy
-        client.publish('BotRx',fx)
-        client.publish('BotRy',fy)
+    try:
+        if (msg.topic =="TLRequest"):
+            global fx
+            global fy
+            client.publish('TopLx',fx)
+            client.publish('TopLy',fy)
+        elif(msg.topic =="TRRequest"):
+            global fx
+            global fy
+            client.publish('TopRx',fx)
+            client.publish('TopRy',fy)
+        elif(msg.topic =="BLRequest"):
+            global fx
+            global fy
+            client.publish('BotLx',fx)
+            client.publish('BotLy',fy)
+        elif(msg.topic =="BRRequest"):
+            global fx
+            global fy
+            client.publish('BotRx',fx)
+            client.publish('BotRy',fy)
+    except:
+        print("error occured")
     
 
 def TL_callback():
