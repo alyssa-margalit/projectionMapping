@@ -268,11 +268,11 @@ IMU.initIMU()       #Initialise the accelerometer, gyroscope and compass
 def on_connect(client, userdata, flags, rc):
     print("Connected to server (i.e., broker) with result code "+str(rc))
     client.subscribe("numScenes")
-    client.message_callback_add("numScenes", maxScene_callback)
     client.subscribe("TLRequest")
     client.subscribe("TRRequest")
     client.subscribe("BLRequest")
     client.subscribe("BRRequest")
+    client.message_callback_add("numScenes", maxScene_callback)
     client.message_callback_add("TLRequest", TL_callback)
     client.message_callback_add("TRRequest", TR_callback)
     client.message_callback_add("BLRequest", BL_callback)
