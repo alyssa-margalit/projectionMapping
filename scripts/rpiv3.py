@@ -560,19 +560,20 @@ if __name__ == '__main__':
         #fy = gyroYangle
         client.publish('fireworkx',gyroXangle)
         client.publish('fireworky',gyroYangle)
-        global flag
-        if (flag ==0):
-            client.publish('TopLx',gyroXangle)
-            client.publish('TopLy',gyroYangle)
-        elif(flag ==1):
-            client.publish('TopRx',gyroXangle)
-            client.publish('TopRy',gyroYangle)
-        elif(flag ==2):
-            client.publish('BotLx',gyroXangle)
-            client.publish('BotLy',gyroYangle)
-        elif(flag ==3):
-            client.publish('BotRx',gyroXangle)
-            client.publish('BotRy',gyroYangle)
+        try:
+            global flag
+            if (flag ==0):
+                client.publish('TopLx',gyroXangle)
+                client.publish('TopLy',gyroYangle)
+            elif(flag ==1):
+                client.publish('TopRx',gyroXangle)
+                client.publish('TopRy',gyroYangle)
+            elif(flag ==2):
+                client.publish('BotLx',gyroXangle)
+                client.publish('BotLy',gyroYangle)
+            elif(flag ==3):
+                client.publish('BotRx',gyroXangle)
+                client.publish('BotRy',gyroYangle)
         #client.publish("xAngle", gyroXangle)
         #client.publish("yAngle", gyroYangle)
         #client.publish("zAngle", gyroZangle)
