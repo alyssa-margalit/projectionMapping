@@ -574,6 +574,8 @@ if __name__ == '__main__':
             elif(flag ==3):
                 client.publish('BotRx',gyroXangle)
                 client.publish('BotRy',gyroYangle)
+        except:
+            print("error occured")
         #client.publish("xAngle", gyroXangle)
         #client.publish("yAngle", gyroYangle)
         #client.publish("zAngle", gyroZangle)
