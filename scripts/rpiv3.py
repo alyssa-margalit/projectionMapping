@@ -37,6 +37,8 @@ import RPi.GPIO as GPIO
 global maxIndex
 maxIndex = 2
 global counterIndex 
+global fx
+global fy
 counterIndex= 0
 GPIO.setmode(GPIO.BOARD)
 GPIO.setwarnings(False)
@@ -49,7 +51,10 @@ GPIO.setup(15,GPIO.IN, pull_up_down = GPIO.PUD_UP)
 def button_callback(channel):
     print("Button was pushed!")
     global counterIndex
+    global fx
+    global fy
     client.publish("Scene",counterIndex)
+    client.publish("click",1)
 def rotaryA_callback(channel):
     global counterIndex 
     global maxIndex
@@ -531,9 +536,17 @@ if __name__ == '__main__':
             outputString +="# kalmanX %5.2f   kalmanY %5.2f #" % (kalmanX,kalmanY)
 
         #print(outputString)
-        client.publish("xAngle", gyroXangle)
-        client.publish("yAngle", gyroYangle)
-        client.publish("zAngle", gyroZangle)
+        global fx
+        global fy
+        fx = gyroXangle
+        fy = gyroYangle
+        client.publish('fireworkx',gyroXangle)
+        client.publish('fireworky',gyroYangle)
+        
+
+        #client.publish("xAngle", gyroXangle)
+        #client.publish("yAngle", gyroYangle)
+        #client.publish("zAngle", gyroZangle)
 
         #slow program down a bit, makes the output more readable
         time.sleep(0.01)

@@ -112,20 +112,29 @@ def onMessage(dat, topic, payload, qos, retained, dup):
 		payload = float(payload[2:(len(payload)-1)])
 		print(payload)
 		y.par.value7 = payload
-	elif topic == 'fireworkx':
+	elif topic == 'click':
 		print('fx:',payload)
 		y = op('constant1')
 		payload = str(payload)
 		payload = float(payload[2:(len(payload)-1)])
 		print(payload)
-		y.par.value8 = payload
-	elif topic == 'fireworky':
-		print('fy:',payload)
+		y.par.value8 += payload
+		if (y.par.value8==7):
+			y.par.value8 = 0
+	elif topic == 'fireworkx':
+		print('fireworkx:',payload)
 		y = op('constant1')
 		payload = str(payload)
 		payload = float(payload[2:(len(payload)-1)])
 		print(payload)
 		y.par.value9 = payload
+	elif topic == 'fireworky':
+		print('fireworky:',payload)
+		y = op('constant1')
+		payload = str(payload)
+		payload = float(payload[2:(len(payload)-1)])
+		print(payload)
+		y.par.value10 = payload
 	return
 
 
