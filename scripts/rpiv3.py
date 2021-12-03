@@ -280,6 +280,8 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print("on_message: " + msg.topic + " " + str(msg.payload, "utf-8"))
     print("on_message: msg.payload is of type " + str(type(msg.payload)))
+def TL_callback():
+    print("tl")
 
 
 if __name__ == '__main__':
