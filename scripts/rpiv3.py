@@ -37,8 +37,7 @@ import RPi.GPIO as GPIO
 global maxIndex
 maxIndex = 2
 global counterIndex 
-global fx
-global fy
+
 fx = 0
 fy = 0
 counterIndex= 0
